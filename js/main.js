@@ -172,7 +172,7 @@ particlesJS('particles-js',
         touch: true,
     
         // touch limit in ms
-        touchLimit: 100,
+        touchLimit: 20,
     
         // infinite loop
         loop: false,
@@ -321,16 +321,19 @@ particlesJS('particles-js',
     var swiperDragged = false,
     startX,
     endX = 0;
+    var isCloseButton = false;
 
     var starXGlobal = 0;
     var lastXGlobal = 0;
-    var $currentbtn;  
+    var $currentbtn; 
+    var $closebtn; 
+     
 function swipe(){
-  var $swipe = $('.swipe-area'),
+  var $swipe = $('.swipe-button-close'),
       $btn = $('.swipe-button');
  
 
-
+    TweenLite.to($swipe, 0, { x: 160});
   // TweenLite.to('#swipe-arrow', 0, { x: 16, y: 11});
   // TweenLite.to('#swipe-end', 0, { x: 235, y: 12});
   
@@ -345,19 +348,46 @@ function swipe(){
     endX = 0;
   })
 
+  $swipe.on('click touchend', function(e){
+    e.preventDefault();
+  }).on('touchstart mousedown', function(e) {
+    e.preventDefault();
+    closebtn = $(this);
+    isCloseButton = true ;
+    swiperDragged = true;
+    startX = 160 ;// typeof e.pageX != 'undefined' ? e.pageX : e.originalEvent.touches[0].pageX;
+    starXGlobal = startX;
+    endX = 0;
+  })
+
   $(document).on('touchmove mousemove', function(e){
-    if (swiperDragged) {
+
+    if (swiperDragged ) {
+
       actualX = typeof e.pageX != 'undefined' ? e.pageX : e.originalEvent.touches[0].pageX;
-      endX = Math.max(0, Math.min(160, actualX - startX));
-      TweenLite.to($currentbtn, 0, { x: endX});
+     
+      if(isCloseButton)
+      {
+         endX = Math.max(0, Math.min(160, actualX - startX));
+        TweenLite.to($swipe, 0, { x: endX});
+        if(endX <= 0)
+        {
+          hideContentBottom();
+        }
+
+      }else{
+        endX = Math.max(0, Math.min(160, actualX - startX));
+        TweenLite.to($currentbtn, 0, { x: endX});
+        console.log(endX);
+      }
       
-      console.log(endX);
       
       // to be changed to functions here
       
       
       var panelx = ((endX/160) * 100)-100 ; 
-      showContent($currentbtn,panelx,$currentbtn.attr("target"));
+      
+        showContent($currentbtn,panelx,$currentbtn.attr("target"));
       // $(".chapter-more-content").css("left",panelx+"%");
       // $(".chapter-more-content").css("bottom",panelx+"%");
 
@@ -372,7 +402,7 @@ function swipe(){
 
 
 
-      if(actualX >= 180)
+      if(actualX >= 180 && !isCloseButton)
       {
         
         console.log("uuuuuunlocked");
@@ -383,23 +413,23 @@ function swipe(){
     if (swiperDragged) {
       swiperDragged = false;
       if (endX < 160) {
-        TweenLite.to($currentbtn, .5,  { x: 0,onUpdate:hideContent });
-        lastXGlobal = $currentbtn.x;
-      
+            TweenLite.to($currentbtn, .5,  { x: 0,onUpdate:hideContent });
+          lastXGlobal = $currentbtn.x;
+        
       
 
       } else {
         
-        disableScroll();
+        disableScroll($currentbtn);
 
 
         console.log("uunlocked");
         TweenLite.to($currentbtn, .1, { x: 160});
         // $('.unlock').addClass('unlocked');
-        setTimeout(function(){
-          TweenLite.to($currentbtn, .5, { x: 0 });
-          // $('.unlock').removeClass('unlocked');
-        }, 1400);
+        // setTimeout(function(){
+        //   TweenLite.to($currentbtn, .5, { x: 0 });
+        //   // $('.unlock').removeClass('unlocked');
+        // }, 1400);
       }
       endX = 0;
     }
@@ -419,9 +449,12 @@ function update() {
   
 }
 
+var hide = false ;
 
 function showContent(currentButton,panelx,number) {
-  
+
+  if(isCloseButton)
+  return;
   if ($(window).width() < 769)
   {
     $("."+currentButton.attr("id")).css("left",panelx+"%");
@@ -438,11 +471,26 @@ function showContent(currentButton,panelx,number) {
     $("."+currentButton.attr("id")+"-wrapper").css("margin-left", -(100+panelx) / 2.5 +"%");
     $("."+number+"").attr('style', 'opacity: '+(1-((100+panelx)/100)*2)+' !important');
   }
+  var th =  $("."+currentButton.attr("id"));
+    th.on('scroll', function() {
+    if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+      
+      // TweenLite.to(currentButton, 1,  { x: 0,onUpdate:hideContent }); 
+      hideContentBottom();
+
+    }
+})
   
   
 }
+
 function hideContent() {
-  
+
+  if(isCloseButton)
+  {
+    // alert("yow");
+    return;
+  }
   var panelx = (($currentbtn.position().left/160) * 100)-100 ; 
   $("."+$currentbtn.attr("id")).css("left",panelx+"%");
   $("."+$currentbtn.attr("id")).css("bottom",panelx+"%");
@@ -450,17 +498,46 @@ function hideContent() {
   $("."+$currentbtn.attr("id")+"-wrapper").css("margin-left", -(100+panelx) / 2.5 +"%");
   // $("#chapter-number-1").css("opacity",1-((100+panelx)/100)*2+" !important");
   $("#chapter-number-1").attr('style', 'opacity: '+1-((100+panelx)/100)*2+' !important');
+
   
 }
+function hideContentBottom() {
 
+
+
+  var panelx = (($currentbtn.position().left/160) * 100)-100 ; 
+  
+  $("#chapter-number-1").attr('style', 'opacity: '+1-((100+panelx)/100)*2+' !important');
+  TweenLite.to($("."+$currentbtn.attr("id")+"-wrapper"), 1,  { "margin-left": "0%"})
+  TweenLite.to($("."+$currentbtn.attr("id")), 1,  { bottom: "-100%",onComplete:hideit })
+
+  
+}
+function hideit()
+{
+  $("."+$currentbtn.attr("id")).css("left",'-100%');
+  TweenLite.to($currentbtn, .5,  { x: 0 });
+  $("."+$currentbtn.attr("id")).scrollTop(10);
+  enableScroll();
+  TweenLite.to(closebtn, 0, { x: 160});
+  isCloseButton = false;
+  
+  
+}
 
 swipe();
 
 
-function disableScroll() {
 
+
+function disableScroll(currentbtn) {
+  $("."+$currentbtn.attr("id")+" > .loader").css("display","block");
   // $(".chapter-more-content").css("display","block");
   page.settings.isOn = false ;
+}
+function enableScroll() {
+  // $(".chapter-more-content").css("display","block");
+  page.settings.isOn = true ;
 }
 
 

@@ -45,6 +45,26 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Myriad Pro';
+    src: url('../assets/fonts/MyriadPro-Regular.woff2') format('woff2'),
+        url('../assets/fonts/MyriadPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FS Lola';
+    src: url('../assets/fonts/FSLola.woff2') format('woff2'),
+        url('../assets/fonts/FSLola.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 html{
     overflow-x: hidden;
 }
@@ -60,8 +80,9 @@ body{
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+    background: #ff000000;
 }
+
 
 .menu-layer{
     position: fixed;
@@ -489,8 +510,34 @@ section.home{
     justify-content: center;
     align-items: center;
     transform: scaleX(-1);
+    cursor: pointer;
 }
 .swipe-area{
+    position: absolute;
+    margin-top: 42px;
+    width: 200px;
+    height: 42px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 21px;
+    bottom: 25%;
+    left: 2%;
+    transform: scale(0.8) ;
+}
+.swipe-button-close{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background-color: rgba(245, 245, 245, 0);
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scaleX(1);
+    cursor: pointer;
+}
+.swipe-area-close{
     position: absolute;
     margin-top: 42px;
     width: 200px;
@@ -507,6 +554,8 @@ section.home{
 
 .chapter-more-content{
     position: absolute;
+    -webkit-transition: background-color 0.4s ease;
+    transition: background-color 0.4s ease;
     width: 100vw;
     min-width: 100vw;
     height: 100vh;
@@ -515,12 +564,31 @@ section.home{
     bottom: 100%;
     z-index: 10;
     overflow-x: hidden;
+    min-height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
 }
 .test{
-    height: 40vh ;
+    height: 55vh ;
     width: 100vw;
 }
-
+.green-bg{
+    position: relative;
+    background-color: #86B57C;
+    padding: 20px;
+    padding-top: 0px;
+}
+.green-bg p{
+    margin-bottom: 0px;
+}
+.overlaping-title{
+    background-color: #FFB202 ;
+    display: inline;
+    position: absolute;
+    top: 0;
+    transform: translateY(-90%);
+    left: 20px;
+    padding: 6px;
+}
 .absoluteit
 {
     position: absolute;
@@ -534,10 +602,248 @@ section.home{
 .slide-right{
     /* min-width: 500px; */
 }
+.inline-items p {
+    margin-left: 15px;
+    font-family: 'Roboto';
+    font-weight: normal;
+}
+
+.chapter-1-c-1{
+    position: relative;
+    background-color: #8EB837 ;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    
+}
+
+
+.chapter-1-c-1 .title{
+    color: #2F602B;
+    font-family: 'Roboto';
+    font-weight: bold;
+    text-align: left;
+}
+.chapter-1-c-1 p{
+    color: white;
+    font-family: 'Roboto';
+    font-weight: normal;
+    text-align: left;
+    padding-right: 20px;
+}
+
+.c1-text{
+    margin-left: 20px;
+    color: #2F602B;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 25px;
+
+}
+.c1-text span {
+    font-size: 4rem;
+    color: white;
+    line-height: 80px;
+}
+.inline-items{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100vw;
+    margin-top: 20px;
+}
+.fake-bg{
+    position: absolute;
+    left: 0;
+    top: 0vw;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    background-size: cover;
+    background-position: center;
+    width: 100vw !important;
+  
+}
+.mini-footer{
+    bottom: 0;
+    background-color: #006C5B;
+    min-height: 70px;
+    width: 100vw;
+    z-index: 10;
+    border-top: 50px solid white;
+    box-sizing: content-box;
+    padding-top: 40px;
+    padding-bottom: 100px;
+    
+}
+
+.scrollable-content {
+    height: 100vh;
+    width: auto;
+    overflow: scroll;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 30%;
+    padding-right: 30%;
+    cursor: pointer;
+}
+.scrollable-map {
+    height: auto;
+    width: auto;
+    overflow: scroll;
+    display: inline-flex;
+}
+.viewport-map{
+    
+    overflow: hidden;
+    margin: auto;
+    text-align: left;
+    border-radius: 5px;
+  }
+.viewport{
+    
+  overflow: hidden;
+  margin: auto;
+  text-align: left;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  padding: 0px !important;
+}
+#morocco{   
+     position: absolute;
+    left: 1.7%;
+    top: 2.3%;
+    width: 21.0%;
+}
+#senegal{   
+    position: absolute;
+    left: 1.85%;
+    top: 29.4%;
+    width: 5.9%;
+}
+#ivoire{   
+    position: absolute;
+    left: 11.8%;
+    top: 38.2%;
+    width: 8.7%;
+}
+.dashed-line{
+    background-image: url('../assets/images/timeline/dash.svg');
+    background-repeat: repeat-x;
+    background-size: contain;
+    min-width: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 1px;
+}
+.year{
+    width: 160px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.element-visible{
+    transform: scale(1.6);
+    
+}
+.element-fade{
+    opacity: 0.3;
+    
+}
+.mini-footer a {
+    color: white;
+    font-family: 'Roboto';
+}
+.mini-footer a img{
+    height: 40px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.follow{
+    display: block ;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.aligned-top-element{
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    width: 300px;
+    margin-left: 200px;
+    padding-top: 20px;
+    background-image: url('../assets/images/timeline/timelinebar.svg');
+    background-size: auto 47%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-left: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
 
 
 
+.aligned-bottom-element{
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: 50%;
+    top: 50%;
+    width: 300px;
+    padding-bottom: 20px;
+    background-image: url('../assets/images/timeline/timelinebardown.svg');
+    background-size: auto 97%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-left: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    
+}
+.timeline-title{
+    min-width: 200px;
+    height: 40px;
+    background-image: url('../assets/images/timeline/titlebg.svg');
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    font-family: 'Rajdhani';
+    font-weight: 600;
+    text-align: left;
+    line-height: 40px;
+    font-size: 1rem;
+    
+}
+.timeline-text{
+    font-family: 'FS Lola' !important;
+    text-align: left;
+    font-size: 0.8rem;
+    margin-bottom: 0px;
+    
+}
 
+
+
+.container-fluid{
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.loader{
+}
+.transpatent{
+    background-color: transparent;
+}
 /* for ipad */
 
 @media all and (min-width: 768px) and (max-width: 1000px)

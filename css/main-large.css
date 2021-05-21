@@ -3,7 +3,20 @@
     *{
         /* border: 1px solid springgreen; */
     }
+    .container-fluid{
+        padding-left: 15vw;
+        padding-right: 15vw;
+    }
     
+.inline-items{
+    width: auto;
+}
+
+.follow{
+    display: flex ;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
 .swipe-area{
     position: absolute;
     margin-top: 42px;
@@ -12,9 +25,10 @@
     background-color: transparent;
     border: 1px solid white;
     border-radius: 21px;
-    bottom: 25%;
-    left: 52%;
+    bottom: 20%;
+    left: 51%;
     transform: scale(0.8) ;
+    margin-left: 5px;
 }
 
     .image-and-text{
@@ -215,7 +229,35 @@
         text-align: left;
         width: 100%;
     }
+    .swipe-area-close{
+        left: 22%;
+    }
+    .aligned-top-element{
+        padding-top: 60px;
+    }
+    
 
+    .timeline-title{
+        min-width: 200px;
+        height: 50px;
+        background-image: url('../assets/images/timeline/titlebg.svg');
+        background-size: contain;
+        background-position: right;
+        background-repeat: no-repeat;
+        font-family: 'Rajdhani';
+        font-weight: 600;
+        text-align: left;
+        line-height: 50px;
+        font-size: 1.5rem;
+        
+    }
+    .timeline-text{
+        font-family: 'FS Lola' !important;
+        text-align: left;
+        font-size: 1rem;
+        margin-bottom: 0px;
+        
+    }
 
     .chapter-text-right p{
         font-family: 'Roboto';
@@ -225,7 +267,7 @@
     }
     
     .chapter-text-right .icons{
-        margin-top: 60px;
+        margin-top: 40px;
         max-width: 150px;
     }
     .chapter-content {
