@@ -715,6 +715,35 @@ section.home{
   height: 100%;
   padding: 0px !important;
 }
+.country{
+    opacity: 0;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.show-country{
+    opacity: 1 !important;
+}
+.show-country-ic{
+    opacity: 1 !important;
+
+}
+.country.icon{
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+.desc{
+    position: absolute;
+    background-color: rgba(128, 255, 0, 0);
+    pointer-events: none;
+    opacity: 0;
+}
+.desc img{
+    width: 300px;
+    height: auto;
+    margin-left: -200px;
+}
 #morocco{   
      position: absolute;
     left: 1.7%;
@@ -733,6 +762,69 @@ section.home{
     top: 38.2%;
     width: 8.7%;
 }
+#burkina{   
+    position: absolute;
+    left: 16.0%;
+    top: 31.62%;
+    width: 11.9%;
+}
+#ghana{   
+    position: absolute;
+    left: 19.8%;
+    top: 37.1%;
+    width: 5.62%;
+}
+#benin{   
+    position: absolute;
+    left: 25.8%;
+    top: 35.7%;
+    width: 4.05%;
+}
+#nigeria{   
+    position: absolute;
+    left: 28.3%;
+    top: 33.44%;
+    width: 16.9%;
+}
+#cameroun{   
+    position: absolute;
+    left: 36.9%;
+    top: 34.6%;
+    width: 11.55%;
+}
+#zambia {
+    position: absolute;
+    left: 56.4%;
+    top: 63.75%;
+    width: 17.1%;
+}
+#tanzania {
+    position: absolute;
+    left: 68%;
+    top: 53.2%;
+    width: 14.7%;
+}
+
+#rwanda {
+    position: absolute;
+    left: 67.4%;
+    top: 53.95%;
+    width: 5.5%;
+}
+
+#kenya {
+    position: absolute;
+    left: 74.3%;
+    top: 45.4%;
+    width: 12%;
+}
+#ethiopia {
+    position: absolute;
+    left: 72.8%;
+    top: 31.7%;
+    width: 21.7%;
+}
+
 .dashed-line{
     background-image: url('../assets/images/timeline/dash.svg');
     background-repeat: repeat-x;

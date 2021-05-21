@@ -41,10 +41,74 @@
 
                 <div class="viewport-map container-fluid chapter-1-c-1" style="overflow: hidden; height: 100vh; width: 100%;background-size: cover; background-color: #93F3E4; " >
                         <div class="scrollable-map">
-                                <img src="assets/images/map/map.jpg" width="3000px" alt="" srcset="">      
-                                <img id="morocco" src="assets/images/map/morocco_1.png" alt="" srcset=""> 
-                                <img id="senegal" src="assets/images/map/senegale.png" alt="" srcset=""> 
-                                <img id="ivoire" src="assets/images/map/ivoire.png" alt="" srcset=""> 
+                                <img  src="assets/images/map/map.jpg" width="3000px" alt="" srcset="">  
+
+                                <img class="country"  id="morocco" src="assets/images/map/morocco_1.png" alt="" srcset=""> 
+                                <img class="country icon morocco" style="transform: scale(0.3); margin-top: -100px; "  id="morocco" src="assets/images/map/morocco-ic.svg" alt="" srcset=""> 
+                                <div id="morocco-desc" class="desc">
+                                    <img src="assets/images/map/cards/morocco.png" alt="" srcset="">
+                                </div>
+
+                                <img class="country"  id="senegal" src="assets/images/map/senegale.png" alt="" srcset=""> 
+                                <img class="country icon senegal" style="transform: scale(0.8); margin-top: -100px;"  id="senegal" src="assets/images/map/senegal-ic.svg" alt="" srcset=""> 
+                                <div id="senegal-desc" class="desc ">
+                                    <img src="assets/images/map/cards/senegal.png" alt="" srcset="">
+                                </div>
+                              
+                                <img class="country"  id="ivoire" src="assets/images/map/ivoire.png" alt="" srcset=""> 
+                                <img class="country icon ivoire"  style="transform: scale(0.7); margin-top: -100px;"   id="ivoire" src="assets/images/map/ivoire-ic.svg" alt="" srcset=""> 
+                                <div id="ivoire-desc" class="desc ">
+                                    <img src="assets/images/map/cards/ivoire.png" alt="" srcset="">
+                                </div>
+                              
+                               
+                                <img class="country"  id="burkina" src="assets/images/map/burkinafaso.png" alt="" srcset=""> 
+                                <img class="country icon burkina"  style="transform: scale(0.7); margin-top: -100px;"   id="burkina" src="assets/images/map/burkinafasso-ic.svg" alt="" srcset=""> 
+                                <div id="burkina-desc" class="desc ">
+                                </div>
+                              
+                               
+                                <img class="country"  id="ghana" src="assets/images/map/ghana.png" alt="" srcset=""> 
+                                <img class="country icon ghana"  style="transform: scale(0.9); margin-top: 00px;"   id="ghana" src="assets/images/map/ghana-ic.svg" alt="" srcset=""> 
+                                <div id="ghana-desc" class="desc ">
+                                    
+                                    
+                                    <img src="assets/images/map/cards/ghana.png" alt="" srcset="">
+                                </div>
+                              
+                               
+                               
+                                <img class="country"  id="benin" src="assets/images/map/benin.png" alt="" srcset=""> 
+                                <img class="country icon benin"  style="transform: scale(1.1); margin-top: 00px;"   id="benin" src="assets/images/map/benin-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="nigeria" src="assets/images/map/nigeria.png" alt="" srcset=""> 
+                                <img class="country icon nigeria"  style="transform: scale(0.4); margin-top: -100px;"   id="nigeria" src="assets/images/map/nigeria-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="cameroun" src="assets/images/map/cameroun.png" alt="" srcset=""> 
+                                <img class="country icon cameroun"  style="transform: scale(0.7); margin-top: 150px;"   id="cameroun" src="assets/images/map/cameroun-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="zambia" src="assets/images/map/zambia.png" alt="" srcset=""> 
+                                <img class="country icon zambia"   style="transform: scale(0.5); margin-top: 00px;"   id="zambia" src="assets/images/map/zambia-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="tanzania" src="assets/images/map/tanzania.png" alt="" srcset=""> 
+                                <img class="country icon tanzania"  style="transform: scale(0.5); margin-top: -100px;"   id="tanzania" src="assets/images/map/tanzania-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="rwanda" src="assets/images/map/rwanda.png" alt="" srcset=""> 
+                                <img class="country icon rwanda"  style="transform: scale(1); margin-top: -100px;"   id="rwanda" src="assets/images/map/rwanda-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="kenya" src="assets/images/map/kenya.png" alt="" srcset=""> 
+                                <img class="country icon kenya"  style="transform: scale(0.5); margin-top: -100px;"   id="kenya" src="assets/images/map/kenya-ic.svg" alt="" srcset=""> 
+                             
+                               
+                                <img class="country"  id="ethiopia" src="assets/images/map/ethiopia.png" alt="" srcset=""> 
+                                <img class="country icon ethiopia"  style="transform: scale(0.5); margin-top: -100px;"   id="ethiopia" src="assets/images/map/ethiopia-ic.svg" alt="" srcset=""> 
+                             
                         </div>
                 
                     </div> 
@@ -86,6 +150,41 @@
             content:  document.querySelector('.scrollable-map'),    
             scrollMode: "transform"
         });
-  
+        var currentElement = null;
+        $(".country").on('mouseleave',function(){
+            if(currentElement!= null)
+                currentElement.css("opacity","0");
+            currentElement = null;
+        });
+
+        $(".country").on('mouseover click touchend',function(){
+            if(currentElement!= null)
+                currentElement.css("opacity","0");
+            currentElement = $("#"+$(this).attr('id')+"-desc");
+            currentElement.css("opacity","1");
+
+            $(".show-country").removeClass("show-country");
+            
+            $(".show-country-ic").removeClass("show-country-ic");
+
+            $("."+$(this).attr('id')).addClass("show-country-ic");
+
+            $(this).addClass("show-country");
+
+        });
+        
+        $(document).on('mousemove', function(e){
+            if(currentElement == null)
+            {
+                e.preventDefault();
+                return;
+            }else{
+                
+                TweenMax.to( currentElement, 1.8, {
+                    css: { left: e.pageX, top: e.pageY - $(".scrollable-map").position().top },
+                    ease: Elastic.easeOut});
+                }
+        });
+
 </script>
 </html>
